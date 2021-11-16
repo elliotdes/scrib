@@ -1,0 +1,20 @@
+#!/bin/bash
+#
+#Simply create recallable items briefly
+
+current_date="$(date "+%Y-%m-%d")"
+notes_directory="$HOME/Documents/notes"
+todays_scrib="$notes_directory/$current_date.md"
+
+mkdir -p $notes_directory
+if [[ ! -f "$todays_scrib" ]]
+then
+    touch "$todays_scrib"
+    echo "# $current_date" >> "$todays_scrib"
+fi
+
+if [[ -f "$todays_scrib" ]]
+then
+    echo -e "\n## $(date +"%r")" >> "$todays_scrib"
+    echo -e "\n$@" >> "$todays_scrib"
+fi
